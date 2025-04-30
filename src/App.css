@@ -1,4 +1,52 @@
-#root {
+.logo-devbank {
+  width: 650px;
+  height: auto;
   margin: 0 auto;
-  text-align: center;
+  display: block;
 }
+
+.primeira-pagina {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  background-color: #b5d8f8; /* <-- Aqui você muda a cor! */
+  color: #b5d8f8;
+  text-align: center;
+  padding: 20px;
+}
+
+.container-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.input-link {
+  padding: 10px 15px;
+  width: 750px;
+  height: 50px;
+  border: none;
+  border-radius: 15px;
+  font-size: 2rem;
+}
+
+.botao-link {
+  width: 120px;
+  padding: 10px 20px;
+  margin: 40px;
+  background-color: blue;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.botao-link:hover {
+  background-color: rgb(1, 1, 77);
+}
+
