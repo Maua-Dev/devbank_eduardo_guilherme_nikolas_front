@@ -26,7 +26,11 @@ function Header() {
   return (
     <div className="topo">
       <h1 className="logo">
-        DEV <span className="destaque">BANK</span>
+      <img
+          src="pngDevBank.png"
+          alt="Logo do DevBank"
+          className="logo-devbank"
+        />
       </h1>
       <div className="info-usuario">
         <p>Nome: {usuario.nome}</p>

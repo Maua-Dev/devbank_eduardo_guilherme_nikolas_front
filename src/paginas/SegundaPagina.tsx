@@ -4,6 +4,7 @@ import "../App.css";
 
 function SegundaPagina() {
   return (
+    
     <div className="pagina">
       <Header />
       <div className="conteudo">

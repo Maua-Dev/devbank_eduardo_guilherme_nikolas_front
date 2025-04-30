@@ -22,7 +22,7 @@ function PrimeiraPagina() {
       <div className="primeira-pagina">
         <h1></h1>
         <img
-          src="imagem_DevBank.jpeg"
+          src="pngDevBank.png"
           alt="Logo do DevBank"
           className="logo-devbank"
         />
