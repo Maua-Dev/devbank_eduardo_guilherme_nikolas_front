@@ -50,3 +50,70 @@
   background-color: rgb(1, 1, 77);
 }
 
+.pagina {
+  background-color: #f0f7ff;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.topo {
+  background-color: #0078e7;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.destaque {
+  color: pink;
+  text-shadow: 2px 2px purple;
+}
+
+.info-usuario {
+  background: white;
+  color: black;
+  padding: 0.5rem;
+  border-radius: 8px;
+}
+
+.conteudo {
+  padding: 2rem;
+}
+
+.cabecalho-acao {
+  background-color: #b3d8ff;
+  color:rgb(0, 0, 0);
+  padding: 1rem;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.cards-opcoes {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.card-opcao {
+  background-color: #75b9ff;
+  padding: 4rem 2rem;
+  text-align: center;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  color: white;
+  width: 200px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.card-opcao:hover {
+  transform: scale(1.05);
+}
