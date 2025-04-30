@@ -12,9 +12,9 @@ function Header() {
       .then((res) => res.json())
       .then((data) => {
         setUsuario({
-          nome: data.nome,
-          agencia: data.agencia,
-          conta: data.conta
+          nome: data.name,
+          agencia: data.agency,
+          conta: data.account
         });
       })
       .catch((error) => {

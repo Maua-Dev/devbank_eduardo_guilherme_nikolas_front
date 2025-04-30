@@ -1,16 +1,18 @@
 import Header from "../componentes/header";
 import CardOpcao from "../componentes/CardOpcao";
 import "../App.css";
+import Saldo from "../componentes/saldo.tsx";
+
 
 function SegundaPagina() {
   return (
     
-    <div className="pagina">
+    <div className="sesgunda-pagina">
       <Header />
       <div className="conteudo">
         <div className="cabecalho-acao">
-          <h2>O que você deseja fazer?</h2>
-          <div className="saldo">Saldo atual: R$ 1000</div>
+          <h2 className="instrucao">O que você deseja fazer?</h2>
+          <Saldo />
         </div>
         <div className="cards-opcoes">
           <CardOpcao texto="Depositar" />

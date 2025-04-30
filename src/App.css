@@ -50,7 +50,7 @@
   background-color: rgb(1, 1, 77);
 }
 
-.pagina {
+.segunda-pagina {
   background-color: #f0f7ff;
   min-height: 100vh;
   font-family: Arial, sans-serif;
@@ -78,8 +78,13 @@
 .info-usuario {
   background: white;
   color: black;
-  padding: 0.5rem;
+  padding: 10px;
+  font-size: 20px;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-top: 2px;
   border-radius: 8px;
+  margin-right: 30px;
 }
 
 .conteudo {
@@ -129,4 +134,10 @@
   margin-top: 1rem;
   font-size: 2rem;
   width: 40%;
+}
+
+.instrucao {
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
 }
