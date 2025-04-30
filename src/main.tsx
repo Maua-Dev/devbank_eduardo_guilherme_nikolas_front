@@ -1,16 +1,16 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PrimeiraPagina from "./paginas/PrimeiraPagina";
 import SegundaPagina from "./paginas/SegundaPagina";
 
-function App() {
-  return (
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<PrimeiraPagina />} />
-        <Route path="/segunda" element={<SegundaPagina />} />
-      </Routes>
-    </BrowserRouter>
-  );
-}
-
-export default App;
+        <Routes>
+          <Route path="/" Component={PrimeiraPagina} />
+          <Route path="/segunda" element={<SegundaPagina />} />
+        </Routes>
+      </BrowserRouter>
+  </React.StrictMode>,
+)
