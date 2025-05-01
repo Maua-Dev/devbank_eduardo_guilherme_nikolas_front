@@ -7,7 +7,7 @@ import Saldo from "../componentes/saldo.tsx";
 function SegundaPagina() {
   return (
     
-    <div className="sesgunda-pagina">
+    <div className="segunda-pagina">
       <Header />
       <div className="conteudo">
         <div className="cabecalho-acao">
