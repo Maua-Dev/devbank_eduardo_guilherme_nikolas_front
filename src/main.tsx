@@ -10,7 +10,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
         <Routes>
           <Route path="/" Component={PrimeiraPagina} />
-          <Route path="/segunda" element={<SegundaPagina />} />
+          <Route path="/principal" element={<SegundaPagina />} />
           <Route path="/deposito" element={<DepositoPagina />} />
         </Routes>
       </BrowserRouter>

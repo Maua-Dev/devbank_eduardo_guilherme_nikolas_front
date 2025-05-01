@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
+import Header from "../componentes/header";
 
 function DepositoPagina() {
   const navigate = useNavigate();
@@ -36,61 +37,64 @@ function DepositoPagina() {
       .then((data) => {
         alert("Depósito realizado com sucesso!");
         setSaldo(data.balance);
-        navigate("/segunda");
+        navigate("/principal");
       })
       .catch(() => alert("Erro ao realizar depósito."));
   }
 
   return (
-    <div className="deposito-pagina">
-      <div className="topo-info">
-        <div className="info-box">Saldo atual: R$ {saldo}</div>
-        <div className="info-box">Quantidade depositada: R$ {valorDepositado}</div>
-      </div>
-
-      <div className="conteudo">
-        <div className="instrucao">
-          Selecione as cédulas e a quantidade que você deseja.
+    <>
+      <Header />
+      <div className="deposito-pagina">
+        <div className="topo-info">
+          <div className="info-box">Saldo atual: R$ {saldo}</div>
+          <div className="info-box">Quantidade depositada: R$ {valorDepositado}</div>
         </div>
 
-        <div className="container-cedulas">
-          {cedulas.map((valor) => (
-            <div className="cedula-box" key={valor}>
-              <div className="cedula">R$ {valor}</div>
-              <div className="controle">
-                <div className="quantidade-label">Quantidade</div>
-                <div className="quantidade-controle">
-                  <button
-                    onClick={() =>
-                      atualizarQuantidade(valor, Math.max((quantidades[valor] || 0) - 1, 0))
-                    }
-                  >
-                    -
-                  </button>
-                  <span>{quantidades[valor] || 0}</span>
-                  <button
-                    onClick={() =>
-                      atualizarQuantidade(valor, (quantidades[valor] || 0) + 1)
-                    }
-                  >
-                    +
-                  </button>
+        <div className="conteudo">
+          <div className="instrucao">
+            Selecione as cédulas e a quantidade que você deseja.
+          </div>
+
+          <div className="container-cedulas">
+            {cedulas.map((valor) => (
+              <div className="cedula-box" key={valor}>
+                <div className="cedula">R$ {valor}</div>
+                <div className="controle">
+                  <div className="quantidade-label">Quantidade</div>
+                  <div className="quantidade-controle">
+                    <button
+                      onClick={() =>
+                        atualizarQuantidade(valor, Math.max((quantidades[valor] || 0) - 1, 0))
+                      }
+                    >
+                      -
+                    </button>
+                    <span>{quantidades[valor] || 0}</span>
+                    <button
+                      onClick={() =>
+                        atualizarQuantidade(valor, (quantidades[valor] || 0) + 1)
+                      }
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        <div className="botoes">
-          <button className="botao" onClick={() => navigate("/segunda")}>
-            Voltar
-          </button>
-          <button className="botao" onClick={handleDepositar}>
-            Depositar
-          </button>
+          <div className="botoes">
+            <button className="botao" onClick={() => navigate("/principal")}>
+              Voltar
+            </button>
+            <button className="botao" onClick={handleDepositar}>
+              Depositar
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

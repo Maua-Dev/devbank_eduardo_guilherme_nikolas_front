@@ -92,10 +92,11 @@
 }
 
 .cabecalho-acao {
-  background-color: #b3d8ff;
+  background-color: #82b8f9;
   color:rgb(0, 0, 0);
-  padding: 0rem;
-  border-radius: 10px;
+  border-radius: 40px;
+  padding-left: 3rem;
+  padding-right: 2rem;
   display: flex;
   justify-content: space-evenly;
   margin-bottom: 2rem;
@@ -127,12 +128,13 @@
   background-color: #5398e2;
   color:rgb(0, 0, 0);
   padding: 1rem;
-  border-radius: 10px;
+  border-radius: 40px;
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-bottom: 1rem;
   margin-top: 1rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
   width: 40%;
 }
 
@@ -167,9 +169,9 @@
 }
 
 .instrucao {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
-  text-align: left;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
 }
 
 .container-cedulas {
