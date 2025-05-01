@@ -1,10 +1,20 @@
-type Props = {
-    texto: string;
-  };
-  
-  function CardOpcao({ texto }: Props) {
-    return <div className="card-opcao">{texto}</div>;
+import { useNavigate } from "react-router-dom";
+import "../App.css";
+
+function CardOpcao({ texto }: { texto: string }) {
+  const navigate = useNavigate();
+
+  function handleClick() {
+    if (texto === "Depositar") navigate("/deposito");
+    else if (texto === "Sacar") navigate("/saque");
+    else if (texto === "Transações") navigate("/transacoes");
   }
-  
-  export default CardOpcao;
-  
+
+  return (
+    <div className="card-opcao" onClick={handleClick}>
+      <p>{texto}</p>
+    </div>
+  );
+}
+
+export default CardOpcao;
