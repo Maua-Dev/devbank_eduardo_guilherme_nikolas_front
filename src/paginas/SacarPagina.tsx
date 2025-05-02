@@ -4,10 +4,10 @@ import "../App.css";
 import Header from "../componentes/header";
 import Saldo from "../componentes/saldo.tsx";
 
-function DepositoPagina() {
+function SacarPagina() {
   const navigate = useNavigate();
   const [quantidades, setQuantidades] = useState<{ [valor: number]: number }>({});
-  const [valorDepositado, setValorDepositado] = useState(0);
+  const [valorSacado, setValorSacado] = useState(0);
   const [saldo, setSaldo] = useState(1000);
 
   const cedulas = [2, 5, 10, 20, 50, 100, 200];
@@ -20,11 +20,11 @@ function DepositoPagina() {
       (acc, val) => acc + (novasQuantidades[val] || 0) * val,
       0
     );
-    setValorDepositado(novoTotal);
+    setValorSacado(novoTotal);
   }
 
-  function handleDepositar() {
-    if (valorDepositado <= 0) {
+  function handleSacar() {
+    if (valorSacado <= 0) {
       alert("Você precisa selecionar pelo menos uma cédula.");
       return;
     }
@@ -36,11 +36,11 @@ function DepositoPagina() {
     })
       .then((res) => res.json())
       .then((data) => {
-        alert("Depósito realizado com sucesso!");
+        alert("Saque realizado com sucesso!");
         setSaldo(data.balance);
         navigate("/principal");
       })
-      .catch(() => alert("Erro ao realizar depósito."));
+      .catch(() => alert("Erro ao realizar saque."));
   }
 
   return (
@@ -49,7 +49,7 @@ function DepositoPagina() {
       <div className="deposito-pagina">
         <div className="topo-info">
           <Saldo />
-          <div className="info-box">Quantidade depositada: R$ {valorDepositado}</div>
+          <div className="info-box">Quantidade Sacada: R$ {valorSacado}</div>
         </div>
 
         <div className="conteudo">
@@ -89,8 +89,8 @@ function DepositoPagina() {
             <button className="botao" onClick={() => navigate("/principal")}>
               Voltar
             </button>
-            <button className="botao" onClick={handleDepositar}>
-              Depositar
+            <button className="botao" onClick={handleSacar}>
+              Sacar
             </button>
           </div>
         </div>
@@ -99,4 +99,4 @@ function DepositoPagina() {
   );
 }
 
-export default DepositoPagina;
+export default SacarPagina;
