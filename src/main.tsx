@@ -5,6 +5,7 @@ import PrimeiraPagina from "./paginas/PrimeiraPagina";
 import SegundaPagina from "./paginas/SegundaPagina";
 import DepositoPagina from "./paginas/DepositoPagina";
 import SacarPagina from "./paginas/SacarPagina";
+import TransacoesPagina from "./paginas/TransacoesPagina";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -13,7 +14,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <Route path="/" Component={PrimeiraPagina} />
           <Route path="/principal" element={<SegundaPagina />} />
           <Route path="/deposito" element={<DepositoPagina />} />
-          <Route path="saque" element={<SacarPagina />} />
+          <Route path="/saque" element={<SacarPagina />} />
+          <Route path="/transacoes" element={<TransacoesPagina />} />
         </Routes>
       </BrowserRouter>
   </React.StrictMode>,
