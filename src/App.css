@@ -302,3 +302,24 @@
   font-weight: bold;
   margin-top: 10px;
 }
+
+.label-deposito {
+  color: #0a5a1d;
+  background-color: #d4edda;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.label-saque {
+  color: #6e0c16;
+  background-color: #f8d7da;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.saldo-centraliza {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
