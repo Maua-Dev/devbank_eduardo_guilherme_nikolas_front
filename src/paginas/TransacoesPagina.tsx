@@ -1,13 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 import Header from "../componentes/header";
+import Saldo from "../componentes/saldo.tsx";
+
 
 function TransacoesPagina() {
   const navigate = useNavigate();
 
   return (
     <>
-    <Header />
+      <Header />
     <div>
       <h1 className="historico">Histórico de Transações</h1>
       <div className="botoes">

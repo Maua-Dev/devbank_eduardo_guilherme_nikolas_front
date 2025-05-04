@@ -257,13 +257,48 @@
   margin-right: auto;
 }
 
-.historico {
-  background-color: #82b8f9;
-  color:rgb(0, 0, 0);
-  border-radius: 40px;
-  padding-left: 3rem;
-  padding-right: 3rem;
+.transacoes-pagina {
+  padding: 20px;
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.topo-info {
   display: flex;
-  justify-content: space-evenly;
-  margin-bottom: 2rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+}
+
+.info-box {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.historico-tabela {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.historico-tabela th, .historico-tabela td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.historico-tabela th {
+  background-color: #f4f4f4;
+}
+
+.erro {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
 }

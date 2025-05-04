@@ -9,6 +9,7 @@ function SacarPagina() {
   const [quantidades, setQuantidades] = useState<{ [valor: number]: number }>({});
   const [valorSacado, setValorSacado] = useState(0);
   const [saldo, setSaldo] = useState(1000);
+  const [reloadSaldo, setReloadSaldo] = useState(0);
 
   const cedulas = [2, 5, 10, 20, 50, 100, 200];
 
@@ -23,24 +24,39 @@ function SacarPagina() {
     setValorSacado(novoTotal);
   }
 
-  function handleSacar() {
+  async function handleSacar() {
     if (valorSacado <= 0) {
       alert("Você precisa selecionar pelo menos uma cédula.");
       return;
     }
 
-    fetch("https://r2ctcz6soxknyb7j5b64ffdsnm@fyfz.lambda-url.us-west-2.on.aws/deposit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ notes: quantidades }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        alert("Saque realizado com sucesso!");
-        setSaldo(data.balance);
+    if (valorSacado > saldo) {
+      alert("Saldo insuficiente para realizar o saque.");
+      return;
+    }
+  
+    try {
+      const response = await fetch("https://r2tcz6zsokynb72jb6o4ffd5nm0ryfyz.lambda-url.us-west-2.on.aws/withdraw", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(quantidades),
+      });
+
+      const data = await response.json();
+
+      if (response.status === 201) {
+        alert("Saque realizado com sucesso! Novo saldo: R$ " + data.current_balance);
+        setReloadSaldo((prev) => prev + 1);
         navigate("/principal");
-      })
-      .catch(() => alert("Erro ao realizar saque."));
+      } else if (response.status === 403) {
+        alert("Erro ao realizar saque: acesso negado.");
+      } else {
+        alert("Erro inesperado ao realizar saque. Código: " + response.status + "\nResposta: " + JSON.stringify(data));
+      }
+    } catch (error) {
+      console.error("Erro ao se conectar com a API:", error);
+      alert("Erro de conexão com o servidor.");
+    }
   }
 
   return (
@@ -48,7 +64,7 @@ function SacarPagina() {
       <Header />
       <div className="deposito-pagina">
         <div className="topo-info">
-          <Saldo />
+          <Saldo reloadTrigger={reloadSaldo} />
           <div className="info-box">Quantidade Sacada: R$ {valorSacado}</div>
         </div>
 
@@ -64,21 +80,9 @@ function SacarPagina() {
                 <div className="controle">
                   <div className="quantidade-label">Quantidade</div>
                   <div className="quantidade-controle">
-                    <button
-                      onClick={() =>
-                        atualizarQuantidade(valor, Math.max((quantidades[valor] || 0) - 1, 0))
-                      }
-                    >
-                      -
-                    </button>
+                    <button onClick={() => atualizarQuantidade(valor, Math.max((quantidades[valor] || 0) - 1, 0))}>-</button>
                     <span>{quantidades[valor] || 0}</span>
-                    <button
-                      onClick={() =>
-                        atualizarQuantidade(valor, (quantidades[valor] || 0) + 1)
-                      }
-                    >
-                      +
-                    </button>
+                    <button onClick={() => atualizarQuantidade(valor, (quantidades[valor] || 0) + 1)}>+</button>
                   </div>
                 </div>
               </div>
@@ -86,12 +90,8 @@ function SacarPagina() {
           </div>
 
           <div className="botoes">
-            <button className="botao" onClick={() => navigate("/principal")}>
-              Voltar
-            </button>
-            <button className="botao" onClick={handleSacar}>
-              Sacar
-            </button>
+            <button className="botao" onClick={() => navigate("/principal")}>Voltar</button>
+            <button className="botao" onClick={handleSacar}>Sacar</button>
           </div>
         </div>
       </div>

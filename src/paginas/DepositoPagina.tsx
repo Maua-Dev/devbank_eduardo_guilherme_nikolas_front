@@ -8,7 +8,7 @@ function DepositoPagina() {
   const navigate = useNavigate();
   const [quantidades, setQuantidades] = useState<{ [valor: number]: number }>({});
   const [valorDepositado, setValorDepositado] = useState(0);
-  const [saldo, setSaldo] = useState(1000);
+  const [reloadSaldo, setReloadSaldo] = useState(0);
 
   const cedulas = [2, 5, 10, 20, 50, 100, 200];
 
@@ -23,24 +23,33 @@ function DepositoPagina() {
     setValorDepositado(novoTotal);
   }
 
-  function handleDepositar() {
+  async function handleDepositar() {
     if (valorDepositado <= 0) {
       alert("Você precisa selecionar pelo menos uma cédula.");
       return;
     }
 
-    fetch("https://r2ctcz6soxknyb7j5b64ffdsnm@fyfz.lambda-url.us-west-2.on.aws/deposit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ notes: quantidades }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        alert("Depósito realizado com sucesso!");
-        setSaldo(data.balance);
+    try {
+      const response = await fetch("https://r2tcz6zsokynb72jb6o4ffd5nm0ryfyz.lambda-url.us-west-2.on.aws/deposit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(quantidades),
+      });
+
+      if (response.status === 201) {
+        const data = await response.json();
+        alert("Depósito realizado com sucesso! Novo saldo: R$ " + data.current_balance);
+        setReloadSaldo((prev) => prev + 1);
         navigate("/principal");
-      })
-      .catch(() => alert("Erro ao realizar depósito."));
+      } else if (response.status === 403) {
+        alert("Erro ao realizar depósito: acesso negado.");
+      } else {
+        alert("Erro inesperado ao realizar depósito.");
+      }
+    } catch (error) {
+      console.error("Erro de conexão:", error);
+      alert("Erro ao se conectar com o servidor.");
+    }
   }
 
   return (
@@ -48,7 +57,7 @@ function DepositoPagina() {
       <Header />
       <div className="deposito-pagina">
         <div className="topo-info">
-          <Saldo />
+          <Saldo reloadTrigger={reloadSaldo} />
           <div className="info-box">Quantidade depositada: R$ {valorDepositado}</div>
         </div>
 
